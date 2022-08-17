@@ -1,13 +1,13 @@
-package com.demo;
+package com.itcsoluciones;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PruebaCargaApplication {
+public class AltasSoporteApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PruebaCargaApplication.class, args);
+		SpringApplication.run(AltasSoporteApplication.class, args);
 	}
 
 }

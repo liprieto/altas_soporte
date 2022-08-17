@@ -1,4 +1,4 @@
-package com.demo.controller;
+package com.itcsoluciones.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,14 +25,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.demo.service.EmpService;
-import com.demo.utility.MediaTypeUtils;
+import com.itcsoluciones.service.AltaService;
+import com.itcsoluciones.utility.MediaTypeUtils;
 
 @RestController
-public class EmpController {
+public class AltasController {
 
 	@Autowired
-	private EmpService es;
+	private AltaService altaService;
 
 	@Autowired
 	private ServletContext servletContext;
@@ -51,12 +51,12 @@ public class EmpController {
 			Files.write(path, bytes);
 			System.out.println(path); 
 			
-			boolean b = es.save1((dtf.format(LocalDateTime.now())+file.getOriginalFilename()));
+			boolean b = altaService.save1((dtf.format(LocalDateTime.now()) + file.getOriginalFilename()));
 
-			return new ResponseEntity<>("Available Fields : Col1, Col2, Col3, Col4", HttpStatus.OK);
+			return new ResponseEntity<>("Archivo cargado con éxito", HttpStatus.OK);
 
 		} catch (IOException e) {
-			return new ResponseEntity<>(" failed to save date ", HttpStatus.EXPECTATION_FAILED);
+			return new ResponseEntity<>("No se pudo almacenar la fecha", HttpStatus.EXPECTATION_FAILED);
 		}
 
 	}
@@ -67,29 +67,30 @@ public class EmpController {
 		try {
 
 			byte[] bytes = file.getBytes();
-			Path path = Paths.get(directorio2 + file.getOriginalFilename());
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss:");
+			Path path = Paths.get(directorio2 + (dtf.format(LocalDateTime.now()) + file.getOriginalFilename()));
 			Files.write(path, bytes);
 
-			boolean b = es.save2(file.getOriginalFilename());
+			boolean b = altaService.save2((dtf.format(LocalDateTime.now()) + file.getOriginalFilename()));
 
-			return new ResponseEntity<>("Available Fields : Col5, Col6, Col7, Col8, Col9", HttpStatus.OK);
+			return new ResponseEntity<>("Archivo cargado con éxito", HttpStatus.OK);
 
 		} catch (IOException e) {
-			return new ResponseEntity<>(" failed to save date ", HttpStatus.EXPECTATION_FAILED);
+			return new ResponseEntity<>("No se pudo almacenar la fecha", HttpStatus.EXPECTATION_FAILED);
 		}
 
 	}
 
 	@GetMapping("/download")
 
-	public ResponseEntity<InputStreamResource> citiesReport(HttpServletRequest request, HttpServletResponse response)
+	public ResponseEntity<InputStreamResource> reporteAltas(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 
 		String order = request.getParameter("order");
 
 		System.out.println(order);
 
-		String fileName = es.createOutPutExcel(order);
+		String fileName = altaService.createOutPutExcel(order);
 
 		MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(this.servletContext, fileName);
 		System.out.println("fileName: " + fileName);

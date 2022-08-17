@@ -1,4 +1,4 @@
-package com.demo.service;
+package com.itcsoluciones.service;
 
 import java.io.FileOutputStream;
 import java.util.List;
@@ -15,39 +15,39 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo.dao.EmpRepository;
-import com.demo.dao.EmpRepository2;
-import com.demo.entity.FileOne;
-import com.demo.entity.FileTwo;
-import com.demo.read.ReadEmp1;
-import com.demo.read.ReadEmp2;
+import com.itcsoluciones.entity.AltaOsde;
+import com.itcsoluciones.entity.AltaPrueba;
+import com.itcsoluciones.read.ReadExcelOsde;
+import com.itcsoluciones.read.ReadExcelPrueba;
+import com.itcsoluciones.repository.AltaOsdeRepository;
+import com.itcsoluciones.repository.AltaPruebaRepository;
 
 @Service
-public class EmpService {
+public class AltaService {
 	@Autowired
-	private EmpRepository er;
+	private AltaOsdeRepository altaOsdeRepo;
 	@Autowired
-	private EmpRepository2 er2;
+	private AltaPruebaRepository altaPruebaRepo;
 
-	public List<FileOne> getEmp() {
-		List<FileOne> list = er.findAll();
+	public List<AltaOsde> getEmp() {
+		List<AltaOsde> list = altaOsdeRepo.findAll();
 		return list;
 	}
 
 	public boolean save1(String fname) {
 		System.out.println(fname);
 		boolean b = false;
-		ReadEmp1 r1 = new ReadEmp1();
-		List<FileOne> list = null;
+		ReadExcelOsde r1 = new ReadExcelOsde();
+		List<AltaOsde> list = null;
 		try {
 			list = r1.getDataFromExcel(fname);
 			System.out.println(list);
 		} catch (Exception e) {
 
 		}
-		for (FileOne f1 : list) {
+		for (AltaOsde f1 : list) {
 			System.out.println(f1);
-			er.save(f1);
+			altaOsdeRepo.save(f1);
 			b = true;
 		}
 		return b;
@@ -56,29 +56,29 @@ public class EmpService {
 	public boolean save2(String fname) {
 		System.out.println(fname);
 		boolean b = false;
-		ReadEmp2 r2 = new ReadEmp2();
-		List<FileTwo> list = null;
+		ReadExcelPrueba r2 = new ReadExcelPrueba();
+		List<AltaPrueba> list = null;
 		try {
 			list = r2.getDataFromExcel(fname);
 			System.out.println(list);
 		} catch (Exception e) {
 
 		}
-		for (FileTwo f2 : list) {
+		for (AltaPrueba f2 : list) {
 			System.out.println(f2);
-			er2.save(f2);
+			altaPruebaRepo.save(f2);
 			b = true;
 		}
 		return b;
 	}
 
-	public List<FileOne> getFile1() {
-		List<FileOne> file1 = er.findAll();
+	public List<AltaOsde> getFile1() {
+		List<AltaOsde> file1 = altaOsdeRepo.findAll();
 		return file1;
 	}
 
-	public List<FileTwo> getFile2() {
-		List<FileTwo> file2 = er2.findAll();
+	public List<AltaPrueba> getFile2() {
+		List<AltaPrueba> file2 = altaPruebaRepo.findAll();
 		return file2;
 	}
 
@@ -87,8 +87,8 @@ public class EmpService {
 			String[] columns = { "col1", "col2", "col3", "col4", "col5", "col6", "col7", "col8", "col9" };
 			String fileName = "generated-file.xlsx";
 			Workbook workbook = new XSSFWorkbook();
-			List<FileOne> list1 = er.findAll();
-			List<FileTwo> list2 = er2.findAll();
+			List<AltaOsde> list1 = altaOsdeRepo.findAll();
+			List<AltaPrueba> list2 = altaPruebaRepo.findAll();
 			CreationHelper createHelper = workbook.getCreationHelper();
 			// Create a Sheet
 			Sheet sheet = workbook.createSheet("Employee");
@@ -115,14 +115,14 @@ public class EmpService {
 
 			// create Other rows and cells with employees data
 			int rowNum = 1;
-			for (FileOne f1 : list1) {
+			for (AltaOsde f1 : list1) {
 				int j = 2;
 				Row row = sheet.createRow(rowNum++);
 				row.createCell(0).setCellValue(f1.getCol1());
 				row.createCell(1).setCellValue(f1.getCol2());
 				row.createCell(2).setCellValue(f1.getCol3());
 				row.createCell(3).setCellValue(f1.getCol4());
-				for (FileTwo f2 : list2) {
+				for (AltaPrueba f2 : list2) {
 					if (j == rowNum) {
 						row.createCell(4).setCellValue(f2.getCol5());
 						row.createCell(5).setCellValue(f2.getCol6());

@@ -1,4 +1,4 @@
-package com.demo.read;
+package com.itcsoluciones.read;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,23 +14,23 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-import com.demo.entity.FileOne;
+import com.itcsoluciones.entity.AltaPrueba;
 
-public class ReadEmp1 {
+public class ReadExcelPrueba {
 
 	// public static final String SAMPLE_XLS_FILE_PATH = "E://Excel/anish.xls";
 	// public static final String SAMPLE_XLSX_FILE_PATH = "E://Excel/anish.xlsx";
 
-	public List<FileOne> getDataFromExcel(String fname)
+	public List<AltaPrueba> getDataFromExcel(String fname)
 			throws IOException, EncryptedDocumentException, InvalidFormatException {
 
-		Workbook workbook = WorkbookFactory.create(new File("/home/luisp/Documentos/prueba-carga/" + fname));
+		Workbook workbook = WorkbookFactory.create(new File("C://upload//" + fname));
 
 		Sheet sheet = workbook.getSheetAt(0);
 
 		DataFormatter dataFormatter = new DataFormatter();
 
-		List<FileOne> listemp = new ArrayList<>();
+		List<AltaPrueba> listemp = new ArrayList<>();
 
 		Iterator<Row> rowIterator = sheet.rowIterator();
 
@@ -41,22 +41,20 @@ public class ReadEmp1 {
 
 			p++;
 			if (p > 1) {
-				FileOne f1 = new FileOne();
+				AltaPrueba f2 = new AltaPrueba();
 
-				f1.setCol1(dataFormatter.formatCellValue(row.getCell(0)));
-				f1.setCol2(dataFormatter.formatCellValue(row.getCell(1)));
-				f1.setCol3(dataFormatter.formatCellValue(row.getCell(2)));
-				f1.setCol4(dataFormatter.formatCellValue(row.getCell(3)));
-				
-
-				listemp.add(f1);
-
+				f2.setCol5(dataFormatter.formatCellValue(row.getCell(0)));
+				f2.setCol6(dataFormatter.formatCellValue(row.getCell(1)));
+				f2.setCol7(dataFormatter.formatCellValue(row.getCell(2)));
+				f2.setCol8(dataFormatter.formatCellValue(row.getCell(3)));
+				f2.setCol9(dataFormatter.formatCellValue(row.getCell(4)));
+				listemp.add(f2);
+				// System.out.println(listemp);
 			}
 
 		}
 
 		workbook.close();
-		// System.out.println(listemp);
 		return listemp;
 	}
 

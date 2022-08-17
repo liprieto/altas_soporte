@@ -1,4 +1,4 @@
-package com.demo.entity;
+package com.itcsoluciones.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="File2")
-public class FileTwo 
+public class AltaPrueba 
 {	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;

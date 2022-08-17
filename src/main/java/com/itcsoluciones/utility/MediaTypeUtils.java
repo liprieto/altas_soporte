@@ -1,4 +1,4 @@
-package com.demo.utility;
+package com.itcsoluciones.utility;
 
 import javax.servlet.ServletContext;
 
@@ -15,7 +15,7 @@ public class MediaTypeUtils {
 		}
 		catch (Exception e) {
 			// TODO: handle exception
-			return MediaType.APPLICATION_OCTET_STREAM;
+			return MediaType.MULTIPART_FORM_DATA;
 		}
 	}
 
