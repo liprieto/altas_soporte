@@ -12,10 +12,22 @@ public class AltaOsde {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private String col1;
-	private String col2;
-	private String col3;
-	private String col4;
+	private String existe = "NO";
+	private String operador;
+	private String filial;
+	private String delegacion;
+	private String pos;
+	private String codigo_prestador;
+	private String nombre;
+	private String especialidad;
+	private String cuit_prestador;
+	private String calle;
+	private String numero_domicilio;
+	private String piso;
+	private String departamento;
+	private String localidad;
+	private String provincia;
+	private String telefono;
 
 	public Integer getId() {
 		return id;
@@ -24,42 +36,147 @@ public class AltaOsde {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getCol1() {
-		return col1;
+	
+	public String getExiste() {
+		return existe;
 	}
 
-	public void setCol1(String col1) {
-		this.col1 = col1;
+	public void setExiste(String existe) {
+		this.existe = existe;
 	}
 
-	public String getCol2() {
-		return col2;
+	public String getOperador() {
+		return operador;
 	}
 
-	public void setCol2(String col2) {
-		this.col2 = col2;
+	public void setOperador(String operador) {
+		this.operador = operador;
 	}
 
-	public String getCol3() {
-		return col3;
+	public String getFilial() {
+		return filial;
 	}
 
-	public void setCol3(String col3) {
-		this.col3 = col3;
+	public void setFilial(String filial) {
+		this.filial = filial;
 	}
 
-	public String getCol4() {
-		return col4;
+	public String getDelegacion() {
+		return delegacion;
 	}
 
-	public void setCol4(String col4) {
-		this.col4 = col4;
+	public void setDelegacion(String delegacion) {
+		this.delegacion = delegacion;
+	}
+
+	public String getPos() {
+		return pos;
+	}
+
+	public void setPos(String pos) {
+		this.pos = pos;
+	}
+
+	public String getCodigo_prestador() {
+		return codigo_prestador;
+	}
+
+	public void setCodigo_prestador(String codigo_prestador) {
+		this.codigo_prestador = codigo_prestador;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
+	}
+
+	public String getCuit_prestador() {
+		return cuit_prestador;
+	}
+
+	public void setCuit_prestador(String cuit_prestador) {
+		this.cuit_prestador = cuit_prestador;
+	}
+
+	public String getCalle() {
+		return calle;
+	}
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+	public String getNumero_domicilio() {
+		return numero_domicilio;
+	}
+
+	public void setNumero_domicilio(String numero_domicilio) {
+		this.numero_domicilio = numero_domicilio;
+	}
+
+	public String getPiso() {
+		return piso;
+	}
+
+	public void setPiso(String piso) {
+		this.piso = piso;
+	}
+
+	public String getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+
+	public String getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 	@Override
 	public String toString() {
-		return "FileOne [id=" + id + ", col1=" + col1 + ", col2=" + col2 + ", col3=" + col3 + ", col4=" + col4 + "]";
+		return "AltaOsde [id=" + id + ", existe=" + existe + ", operador=" + operador + ", filial=" + filial
+				+ ", delegacion=" + delegacion + ", pos=" + pos + ", codigo_prestador=" + codigo_prestador + ", nombre="
+				+ nombre + ", especialidad=" + especialidad + ", cuit_prestador=" + cuit_prestador + ", calle=" + calle
+				+ ", numero_domicilio=" + numero_domicilio + ", piso=" + piso + ", departamento=" + departamento
+				+ ", localidad=" + localidad + ", provincia=" + provincia + ", telefono=" + telefono + "]";
 	}
+
+	
+	 
+	  
+	 
 
 }

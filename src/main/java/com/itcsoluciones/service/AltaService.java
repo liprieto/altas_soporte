@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 
 import com.itcsoluciones.entity.AltaOsde;
 import com.itcsoluciones.entity.AltaPrueba;
-import com.itcsoluciones.read.ReadExcelOsde;
-import com.itcsoluciones.read.ReadExcelPrueba;
+import com.itcsoluciones.read.LecturaExcelOsde;
+import com.itcsoluciones.read.LecturaExcelPrueba;
 import com.itcsoluciones.repository.AltaOsdeRepository;
 import com.itcsoluciones.repository.AltaPruebaRepository;
 
@@ -29,18 +29,18 @@ public class AltaService {
 	@Autowired
 	private AltaPruebaRepository altaPruebaRepo;
 
-	public List<AltaOsde> getEmp() {
+	public List<AltaOsde> getAltas() {
 		List<AltaOsde> list = altaOsdeRepo.findAll();
 		return list;
 	}
 
-	public boolean save1(String fname) {
-		System.out.println(fname);
+	public boolean guardarDirectorio1(String fileName) {
+		System.out.println(fileName);
 		boolean b = false;
-		ReadExcelOsde r1 = new ReadExcelOsde();
+		LecturaExcelOsde lecturaExcelOsde = new LecturaExcelOsde();
 		List<AltaOsde> list = null;
 		try {
-			list = r1.getDataFromExcel(fname);
+			list = lecturaExcelOsde.getDataFromExcel(fileName);
 			System.out.println(list);
 		} catch (Exception e) {
 
@@ -53,13 +53,13 @@ public class AltaService {
 		return b;
 	}
 
-	public boolean save2(String fname) {
-		System.out.println(fname);
+	public boolean guardarDirectorio2(String fileName) {
+		System.out.println(fileName);
 		boolean b = false;
-		ReadExcelPrueba r2 = new ReadExcelPrueba();
+		LecturaExcelPrueba r2 = new LecturaExcelPrueba();
 		List<AltaPrueba> list = null;
 		try {
-			list = r2.getDataFromExcel(fname);
+			list = r2.getDataFromExcel(fileName);
 			System.out.println(list);
 		} catch (Exception e) {
 
@@ -118,10 +118,10 @@ public class AltaService {
 			for (AltaOsde f1 : list1) {
 				int j = 2;
 				Row row = sheet.createRow(rowNum++);
-				row.createCell(0).setCellValue(f1.getCol1());
-				row.createCell(1).setCellValue(f1.getCol2());
-				row.createCell(2).setCellValue(f1.getCol3());
-				row.createCell(3).setCellValue(f1.getCol4());
+				row.createCell(0).setCellValue(f1.getOperador());
+				row.createCell(1).setCellValue(f1.getFilial());
+				row.createCell(2).setCellValue(f1.getDelegacion());
+				row.createCell(3).setCellValue(f1.getPos());
 				for (AltaPrueba f2 : list2) {
 					if (j == rowNum) {
 						row.createCell(4).setCellValue(f2.getCol5());

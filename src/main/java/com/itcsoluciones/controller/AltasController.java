@@ -51,7 +51,7 @@ public class AltasController {
 			Files.write(path, bytes);
 			System.out.println(path); 
 			
-			boolean b = altaService.save1((dtf.format(LocalDateTime.now()) + file.getOriginalFilename()));
+			boolean b = altaService.guardarDirectorio1((dtf.format(LocalDateTime.now()) + file.getOriginalFilename()));
 
 			return new ResponseEntity<>("Archivo cargado con éxito", HttpStatus.OK);
 
@@ -71,7 +71,7 @@ public class AltasController {
 			Path path = Paths.get(directorio2 + (dtf.format(LocalDateTime.now()) + file.getOriginalFilename()));
 			Files.write(path, bytes);
 
-			boolean b = altaService.save2((dtf.format(LocalDateTime.now()) + file.getOriginalFilename()));
+			boolean b = altaService.guardarDirectorio2((dtf.format(LocalDateTime.now()) + file.getOriginalFilename()));
 
 			return new ResponseEntity<>("Archivo cargado con éxito", HttpStatus.OK);
 

@@ -16,7 +16,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import com.itcsoluciones.entity.AltaPrueba;
 
-public class ReadExcelPrueba {
+public class LecturaExcelPrueba {
 
 	// public static final String SAMPLE_XLS_FILE_PATH = "E://Excel/anish.xls";
 	// public static final String SAMPLE_XLSX_FILE_PATH = "E://Excel/anish.xlsx";

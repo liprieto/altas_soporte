@@ -5,6 +5,9 @@ import javax.servlet.ServletContext;
 import org.springframework.http.MediaType;
 
 public class MediaTypeUtils {
+	
+	//Metodo Multipart para lectura de archivo subido vía web desde el directorio. 
+	
 	public static MediaType getMediaTypeForFileName(ServletContext servletContext,String fileName)
 	{
 		String mimeType=servletContext.getMimeType(fileName);

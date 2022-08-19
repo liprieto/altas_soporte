@@ -9,11 +9,11 @@
 		<version>2.7.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.demo</groupId>
-	<artifactId>prueba_carga</artifactId>
+	<groupId>com.itcsoluciones</groupId>
+	<artifactId>altas_soporte</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>prueba_carga</name>
-	<description>CargaExcel</description>
+	<name>altas_soporte</name>
+	<description>Altas Automáticas Soporte y Análisis</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
