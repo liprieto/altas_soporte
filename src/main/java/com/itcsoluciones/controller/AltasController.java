@@ -65,7 +65,7 @@ public class AltasController {
 	public ResponseEntity<String> singleFileUpload1(@RequestParam("file") MultipartFile file) {
 
 		try {
-
+   
 			byte[] bytes = file.getBytes();
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss:");
 			Path path = Paths.get(directorio2 + (dtf.format(LocalDateTime.now()) + file.getOriginalFilename()));
@@ -85,7 +85,7 @@ public class AltasController {
 
 	public ResponseEntity<InputStreamResource> reporteAltas(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-
+ 
 		String order = request.getParameter("order");
 
 		System.out.println(order);

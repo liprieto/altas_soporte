@@ -33,7 +33,9 @@ public class AltaService {
 		List<AltaOsde> list = altaOsdeRepo.findAll();
 		return list;
 	}
-
+	
+	//Metodo para guardar archivo OSDE en directorio para almacenamiento y lectura
+	
 	public boolean guardarDirectorio1(String fileName) {
 		System.out.println(fileName);
 		boolean b = false;
@@ -52,7 +54,9 @@ public class AltaService {
 		}
 		return b;
 	}
-
+	
+	//Metodo para guardar archivo X en directorio para almacenamiento y lectura
+	
 	public boolean guardarDirectorio2(String fileName) {
 		System.out.println(fileName);
 		boolean b = false;
@@ -81,7 +85,9 @@ public class AltaService {
 		List<AltaPrueba> file2 = altaPruebaRepo.findAll();
 		return file2;
 	}
-
+	
+	//Metodo para crear archivo Excel por consulta a la base de datos. 
+	
 	public String createOutPutExcel(String order) {
 		try {
 			String[] columns = { "col1", "col2", "col3", "col4", "col5", "col6", "col7", "col8", "col9" };
@@ -93,17 +99,17 @@ public class AltaService {
 			// Create a Sheet
 			Sheet sheet = workbook.createSheet("Employee");
 
-			// create a font for styling header cells
+			// crear una fuente para celdas de encabezado
 			Font headerFont = workbook.createFont();
 			headerFont.setBold(true);
 			headerFont.setFontHeightInPoints((short) 14);
 			headerFont.setColor(IndexedColors.RED.getIndex());
 
-			// create a cellStyle with the font
+			// crear un estilo de celda con la fuente
 			CellStyle headerCellStyle = workbook.createCellStyle();
 			headerCellStyle.setFont(headerFont);
 
-			// Create a Row
+			// crear celda
 			Row headerRow = sheet.createRow(0);
 
 			// create cell
@@ -113,7 +119,7 @@ public class AltaService {
 				cell.setCellStyle(headerCellStyle);
 			}
 
-			// create Other rows and cells with employees data
+			// Crear filas y celdas con datos
 			int rowNum = 1;
 			for (AltaOsde f1 : list1) {
 				int j = 2;
@@ -133,11 +139,13 @@ public class AltaService {
 					j++;
 				}
 			}
-			// Resize all columns to fit the content size
+			// Cambiar el tamaño de las columnas para que se ajusten al tamaño del contenido
 			for (int i = 0; i < columns.length; i++)
 				sheet.autoSizeColumn(i);
 
 			System.out.println("==============");
+			
+			//Directorio para guardar archivo generado
 			FileOutputStream fileOut = new FileOutputStream("/home/luisp/Documentos/Archivos" + fileName);
 			workbook.write(fileOut);
 			fileOut.close();

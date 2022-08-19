@@ -25,7 +25,7 @@ public class LecturaExcelOsde {
 		Workbook workbook = WorkbookFactory.create(new FileInputStream("/home/luisp/Documentos/prueba-carga/" + fileName));
 		
 		Sheet sheet = workbook.getSheetAt(0);
-		System.out.println("Cantidad de hojas: " + sheet);
+		//System.out.println("Cantidad de hojas: " + sheet);
 		
 		int filas = sheet.getPhysicalNumberOfRows();
 		System.out.println("Cantidad de filas: " + filas);

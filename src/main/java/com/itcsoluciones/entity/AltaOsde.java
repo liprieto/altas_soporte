@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "File1")
+
 public class AltaOsde {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
