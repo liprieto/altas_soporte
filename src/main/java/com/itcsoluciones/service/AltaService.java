@@ -47,9 +47,9 @@ public class AltaService {
 		} catch (Exception e) {
 
 		}
-		for (AltaOsde f1 : list) {
-			System.out.println(f1);
-			altaOsdeRepo.save(f1);
+		for (AltaOsde archivoOsde : list) {
+			System.out.println(archivoOsde);
+			altaOsdeRepo.save(archivoOsde);
 			b = true;
 		}
 		return b;
@@ -60,17 +60,17 @@ public class AltaService {
 	public boolean guardarDirectorio2(String fileName) {
 		System.out.println(fileName);
 		boolean b = false;
-		LecturaExcelPrueba r2 = new LecturaExcelPrueba();
+		LecturaExcelPrueba lecturaExcelPrueba = new LecturaExcelPrueba();
 		List<AltaPrueba> list = null;
 		try {
-			list = r2.getDataFromExcel(fileName);
+			list = lecturaExcelPrueba.getDataFromExcel(fileName);
 			System.out.println(list);
 		} catch (Exception e) {
 
 		}
-		for (AltaPrueba f2 : list) {
-			System.out.println(f2);
-			altaPruebaRepo.save(f2);
+		for (AltaPrueba archivoPrueba : list) {
+			System.out.println(archivoPrueba);
+			altaPruebaRepo.save(archivoPrueba);
 			b = true;
 		}
 		return b;
@@ -88,22 +88,22 @@ public class AltaService {
 	
 	//Metodo para crear archivo Excel por consulta a la base de datos. 
 	
-	public String createOutPutExcel(String order) {
+	public String crearExcelRespuesta(String order) {
 		try {
-			String[] columns = { "col1", "col2", "col3", "col4", "col5", "col6", "col7", "col8", "col9" };
-			String fileName = "generated-file.xlsx";
+			String[] columns = { "Operador", "Filial", "Delegacion", "POS", "Cod. Prestador", "Nombre", "Especialidad", "Cuit Prestador", "Calle" };
+			String fileName = "altas.xlsx";
 			Workbook workbook = new XSSFWorkbook();
 			List<AltaOsde> list1 = altaOsdeRepo.findAll();
-			List<AltaPrueba> list2 = altaPruebaRepo.findAll();
+			//List<AltaPrueba> list2 = altaPruebaRepo.findAll();
 			CreationHelper createHelper = workbook.getCreationHelper();
 			// Create a Sheet
-			Sheet sheet = workbook.createSheet("Employee");
+			Sheet sheet = workbook.createSheet("Alta OSDE");
 
 			// crear una fuente para celdas de encabezado
 			Font headerFont = workbook.createFont();
 			headerFont.setBold(true);
 			headerFont.setFontHeightInPoints((short) 14);
-			headerFont.setColor(IndexedColors.RED.getIndex());
+			headerFont.setColor(IndexedColors.BLUE.getIndex());
 
 			// crear un estilo de celda con la fuente
 			CellStyle headerCellStyle = workbook.createCellStyle();
@@ -128,16 +128,13 @@ public class AltaService {
 				row.createCell(1).setCellValue(f1.getFilial());
 				row.createCell(2).setCellValue(f1.getDelegacion());
 				row.createCell(3).setCellValue(f1.getPos());
-				for (AltaPrueba f2 : list2) {
-					if (j == rowNum) {
-						row.createCell(4).setCellValue(f2.getCol5());
-						row.createCell(5).setCellValue(f2.getCol6());
-						row.createCell(6).setCellValue(f2.getCol7());
-						row.createCell(7).setCellValue(f2.getCol8());
-						row.createCell(8).setCellValue(f2.getCol9());
-					}
-					j++;
-				}
+				row.createCell(4).setCellValue(f1.getCodigo_prestador());
+				row.createCell(5).setCellValue(f1.getNombre());
+				row.createCell(6).setCellValue(f1.getEspecialidad());
+				row.createCell(7).setCellValue(f1.getCuit_prestador());
+				row.createCell(8).setCellValue(f1.getCalle());
+				
+				j++;
 			}
 			// Cambiar el tamaño de las columnas para que se ajusten al tamaño del contenido
 			for (int i = 0; i < columns.length; i++)
@@ -146,7 +143,7 @@ public class AltaService {
 			System.out.println("==============");
 			
 			//Directorio para guardar archivo generado
-			FileOutputStream fileOut = new FileOutputStream("/home/luisp/Documentos/Archivos" + fileName);
+			FileOutputStream fileOut = new FileOutputStream("/home/luisp/Documentos/prueba-carga/" + fileName);
 			workbook.write(fileOut);
 			fileOut.close();
 			// Closing the Workbook

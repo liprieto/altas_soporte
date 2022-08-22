@@ -1,6 +1,5 @@
 package com.itcsoluciones.read;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import com.itcsoluciones.entity.AltaOsde;
+
 
 public class LecturaExcelOsde {
 
@@ -46,7 +46,7 @@ public class LecturaExcelOsde {
                     System.out.println(matriz[i][j]);
                     
                     
-                    
+                    //Validacion de datos del prestador:   
                     
                     
                     
@@ -63,6 +63,7 @@ public class LecturaExcelOsde {
 		int rowNumber = 0;
 
 		while (rowIterator.hasNext()) {
+			
 			Row row = rowIterator.next();
 
 			rowNumber++;

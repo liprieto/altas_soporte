@@ -29,7 +29,7 @@ import com.itcsoluciones.service.AltaService;
 import com.itcsoluciones.utility.MediaTypeUtils;
 
 @RestController
-public class AltasController {
+public class AltaController {
 
 	@Autowired
 	private AltaService altaService;
@@ -90,7 +90,7 @@ public class AltasController {
 
 		System.out.println(order);
 
-		String fileName = altaService.createOutPutExcel(order);
+		String fileName = altaService.crearExcelRespuesta(order);
 
 		MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(this.servletContext, fileName);
 		System.out.println("fileName: " + fileName);
