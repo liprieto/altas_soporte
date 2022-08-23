@@ -11,68 +11,63 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  
+
 <script type="text/javascript">
-$(function() {
-  $("#b1").click(function(e) {
-    e.preventDefault();
-    //Disable submit button
-    $(this).prop('disabled',true);
-    
-    var form = document.forms[0];
-    var formData = new FormData(form);
-    	
-   
-    var ajaxReq = $.ajax({
-      url : '/uploadfile1',
-      type : 'POST',
-      data : formData,
-      cache : false,
-      contentType : false,
-      processData : false,
-      xhr: function(){
-       
-         var xhr = $.ajaxSettings.xhr() ;
-        
-         xhr.upload.onprogress = function(event){
-          	
-          	
-         };
-         return xhr ;
-    	},
-    	beforeSend: function( xhr ) {
-    		
-    		$('#alertMsg').text('');
-    		
-              }
-    });
-  
-    // Called on success of file upload
-    ajaxReq.done(function(msg) {
-      $('#alertMsg').text(msg);
-     
-    });
-    
-    // Called on failure of file upload
-    ajaxReq.fail(function(jqXHR) {
-      $('#alertMsg').text(jqXHR.responseText+'('+jqXHR.status+' - '+jqXHR.statusText+')');
-    
-    });
-  });
-});
+	$(function() {
+		$("#b1").click(
+				function(e) {
+					e.preventDefault();
+					//Boton enviar
+					$(this).prop('disabled', true);
 
+					var form = document.forms[0];
+					var formData = new FormData(form);
 
+					var ajaxReq = $.ajax({
+						url : '/uploadfile1',
+						type : 'POST',
+						data : formData,
+						cache : false,
+						contentType : false,
+						processData : false,
+						xhr : function() {
 
-function sentData()
-{
-	
-	
-var data=	$("#order").val();
+							var xhr = $.ajaxSettings.xhr();
 
+							xhr.upload.onprogress = function(event) {
 
-	
-	location.href = "/download?order="+data;
-}
+							};
+							return xhr;
+						},
+						beforeSend : function(xhr) {
+
+							$('#alertMsg').text('');
+
+						}
+					});
+
+					// Mensaje exitoso de archivo subido
+					ajaxReq.done(function(msg) {
+						$('#alertMsg').text(msg);
+
+					});
+
+					// Mensaje fallido de archivo subido
+					ajaxReq.fail(function(jqXHR) {
+						$('#alertMsg').text(
+								jqXHR.responseText + '(' + jqXHR.status + ' - '
+										+ jqXHR.statusText + ')');
+
+					});
+				});
+	});
+
+	function sentData() {
+
+		var data = $("#order").val();
+
+		location.href = "/download?order=" + data;
+	}
 </script>
 
 
@@ -80,53 +75,55 @@ var data=	$("#order").val();
 
 
 <script type="text/javascript">
-$(function() {
-  $("#b2").click(function(e) {
-    e.preventDefault();
-    //Disable submit button
-    $(this).prop('disabled',true);
-    
-    var form = document.forms[1];
-    var formData = new FormData(form);
-    	
-    // Ajax call for file uploaling
-    var ajaxReq = $.ajax({
-      url : '/uploadfile2',
-      type : 'POST',
-      data : formData,
-      cache : false,
-      contentType : false,
-      processData : false,
-      xhr: function(){
-        //Get XmlHttpRequest object
-         var xhr = $.ajaxSettings.xhr() ;
-        //Set onprogress event handler 
-         xhr.upload.onprogress = function(event){
-          	
-          
-         };
-         return xhr ;
-    	},
-    	beforeSend: function( xhr ) {
-    		//Reset alert message and progress bar
-    		$('#alertMsg1').text('');
-    		
-              }
-    });
-  
-    // Called on success of file upload
-    ajaxReq.done(function(msg) {
-      $('#alertMsg1').text(msg);
-      
-    });
-    
-    // Called on failure of file upload
-    ajaxReq.fail(function(jqXHR) {
-      $('#alertMsg1').text(jqXHR.responseText+'('+jqXHR.status+' - '+jqXHR.statusText+')');
-      
-    });
-  });
-});
+	$(function() {
+		$("#b2").click(
+				function(e) {
+					e.preventDefault();
+					//Boton enviar
+					$(this).prop('disabled', true);
+
+					var form = document.forms[1];
+					var formData = new FormData(form);
+
+					// Ajax call for file uploaling
+					var ajaxReq = $.ajax({
+						url : '/uploadfile2',
+						type : 'POST',
+						data : formData,
+						cache : false,
+						contentType : false,
+						processData : false,
+						xhr : function() {
+							//Get XmlHttpRequest object
+							var xhr = $.ajaxSettings.xhr();
+							//Set onprogress event handler 
+							xhr.upload.onprogress = function(event) {
+
+							};
+							return xhr;
+						},
+						beforeSend : function(xhr) {
+							//Reset alert message and progress bar
+							$('#alertMsg1').text('');
+
+						}
+					});
+
+					// Called on success of file upload
+					ajaxReq.done(function(msg) {
+						$('#alertMsg1').text(msg);
+
+					});
+
+					// Called on failure of file upload
+					ajaxReq.fail(function(jqXHR) {
+						$('#alertMsg1').text(
+								jqXHR.responseText + '(' + jqXHR.status + ' - '
+										+ jqXHR.statusText + ')');
+
+					});
+				});
+	});
 </script>
 
 
@@ -178,9 +175,7 @@ $(function() {
 			<textarea rows="5" cols="50" id="order"></textarea>
 		</div>
 	-->
-		<br> <br> <br> <a href="javascript:sentData()">Descargar
-			archivo
-			</button>
+		<br> <br> <br> <a href="javascript:sentData()">Descargar archivo</button>
 	</div>
 </body>
 </html>

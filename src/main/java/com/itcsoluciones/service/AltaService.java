@@ -1,6 +1,8 @@
 package com.itcsoluciones.service;
 
 import java.io.FileOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -33,9 +35,9 @@ public class AltaService {
 		List<AltaOsde> list = altaOsdeRepo.findAll();
 		return list;
 	}
-	
-	//Metodo para guardar archivo OSDE en directorio para almacenamiento y lectura
-	
+
+	// Metodo para guardar archivo OSDE en directorio para almacenamiento y lectura
+
 	public boolean guardarDirectorio1(String fileName) {
 		System.out.println(fileName);
 		boolean b = false;
@@ -54,47 +56,42 @@ public class AltaService {
 		}
 		return b;
 	}
-	
-	//Metodo para guardar archivo X en directorio para almacenamiento y lectura
-	
-	public boolean guardarDirectorio2(String fileName) {
-		System.out.println(fileName);
-		boolean b = false;
-		LecturaExcelPrueba lecturaExcelPrueba = new LecturaExcelPrueba();
-		List<AltaPrueba> list = null;
-		try {
-			list = lecturaExcelPrueba.getDataFromExcel(fileName);
-			System.out.println(list);
-		} catch (Exception e) {
 
-		}
-		for (AltaPrueba archivoPrueba : list) {
-			System.out.println(archivoPrueba);
-			altaPruebaRepo.save(archivoPrueba);
-			b = true;
-		}
-		return b;
-	}
+	// Metodo para guardar archivo X en directorio para almacenamiento y lectura
 
+	/*
+	 * public boolean guardarDirectorio2(String fileName) {
+	 * System.out.println(fileName); boolean b = false; LecturaExcelPrueba
+	 * lecturaExcelPrueba = new LecturaExcelPrueba(); List<AltaPrueba> list = null;
+	 * try { list = lecturaExcelPrueba.getDataFromExcel(fileName);
+	 * System.out.println(list); } catch (Exception e) {
+	 * 
+	 * } for (AltaPrueba archivoPrueba : list) { System.out.println(archivoPrueba);
+	 * altaPruebaRepo.save(archivoPrueba); b = true; } return b; }
+	 */
+
+	// Busqueda de registros en tabla temporal para excel de respuesta (OSDE)
 	public List<AltaOsde> getFile1() {
 		List<AltaOsde> file1 = altaOsdeRepo.findAll();
 		return file1;
 	}
 
-	public List<AltaPrueba> getFile2() {
-		List<AltaPrueba> file2 = altaPruebaRepo.findAll();
-		return file2;
-	}
-	
-	//Metodo para crear archivo Excel por consulta a la base de datos. 
-	
+	// Busqueda de registros en tabla temporal para excel de respuesta (X FINANCIADOR)
+	/*
+	 * public List<AltaPrueba> getFile2() { List<AltaPrueba> file2 =
+	 * altaPruebaRepo.findAll(); return file2; }
+	 */
+
+	// Metodo para crear archivo Excel por consulta a la base de datos.
+
 	public String crearExcelRespuesta(String order) {
 		try {
-			String[] columns = { "Operador", "Filial", "Delegacion", "POS", "Cod. Prestador", "Nombre", "Especialidad", "Cuit Prestador", "Calle" };
-			String fileName = "altas.xlsx";
+			String[] headers = { "Operador", "Filial", "Delegacion", "POS", "Cod. Prestador", "Nombre", "Especialidad",
+					"Cuit Prestador", "Calle" };
+			String fileName = "altas-respuesta.xlsx";
 			Workbook workbook = new XSSFWorkbook();
 			List<AltaOsde> list1 = altaOsdeRepo.findAll();
-			//List<AltaPrueba> list2 = altaPruebaRepo.findAll();
+			// List<AltaPrueba> list2 = altaPruebaRepo.findAll();
 			CreationHelper createHelper = workbook.getCreationHelper();
 			// Create a Sheet
 			Sheet sheet = workbook.createSheet("Alta OSDE");
@@ -113,9 +110,9 @@ public class AltaService {
 			Row headerRow = sheet.createRow(0);
 
 			// create cell
-			for (int i = 0; i < columns.length; i++) {
+			for (int i = 0; i < headers.length; i++) {
 				Cell cell = headerRow.createCell(i);
-				cell.setCellValue(columns[i]);
+				cell.setCellValue(headers[i]);
 				cell.setCellStyle(headerCellStyle);
 			}
 
@@ -133,17 +130,18 @@ public class AltaService {
 				row.createCell(6).setCellValue(f1.getEspecialidad());
 				row.createCell(7).setCellValue(f1.getCuit_prestador());
 				row.createCell(8).setCellValue(f1.getCalle());
-				
+
 				j++;
 			}
 			// Cambiar el tamaño de las columnas para que se ajusten al tamaño del contenido
-			for (int i = 0; i < columns.length; i++)
+			for (int i = 0; i < headers.length; i++)
 				sheet.autoSizeColumn(i);
 
 			System.out.println("==============");
-			
-			//Directorio para guardar archivo generado
-			FileOutputStream fileOut = new FileOutputStream("/home/luisp/Documentos/prueba-carga/" + fileName);
+
+			// Directorio para guardar archivo generado
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss:");
+			FileOutputStream fileOut = new FileOutputStream("/home/luisp/Documentos/prueba-carga/" + (dtf.format(LocalDateTime.now())+ fileName));
 			workbook.write(fileOut);
 			fileOut.close();
 			// Closing the Workbook

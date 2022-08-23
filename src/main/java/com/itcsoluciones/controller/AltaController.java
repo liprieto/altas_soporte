@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itcsoluciones.service.AltaService;
-import com.itcsoluciones.utility.MediaTypeUtils;
+import com.itcsoluciones.write.DescargaExcel;
 
 @RestController
 public class AltaController {
@@ -60,8 +60,10 @@ public class AltaController {
 		}
 
 	}
-
-	@PostMapping("/uploadfile2")
+	
+	//Endpoint para futuro prestador que utilice el microservicio 
+	
+	/*@PostMapping("/uploadfile2")
 	public ResponseEntity<String> singleFileUpload1(@RequestParam("file") MultipartFile file) {
 
 		try {
@@ -79,7 +81,7 @@ public class AltaController {
 			return new ResponseEntity<>("No se pudo almacenar la fecha", HttpStatus.EXPECTATION_FAILED);
 		}
 
-	}
+	}*/
 
 	@GetMapping("/download")
 
@@ -92,7 +94,7 @@ public class AltaController {
 
 		String fileName = altaService.crearExcelRespuesta(order);
 
-		MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(this.servletContext, fileName);
+		MediaType mediaType = DescargaExcel.getMediaTypeForFileName(this.servletContext, fileName);
 		System.out.println("fileName: " + fileName);
 		System.out.println("mediaType: " + mediaType);
 

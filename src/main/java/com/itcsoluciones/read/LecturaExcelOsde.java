@@ -16,44 +16,41 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import com.itcsoluciones.entity.AltaOsde;
 
-
 public class LecturaExcelOsde {
 
 	public List<AltaOsde> getDataFromExcel(String fileName)
 			throws IOException, EncryptedDocumentException, InvalidFormatException {
 
-		Workbook workbook = WorkbookFactory.create(new FileInputStream("/home/luisp/Documentos/prueba-carga/" + fileName));
-		
+		Workbook workbook = WorkbookFactory
+				.create(new FileInputStream("/home/luisp/Documentos/prueba-carga/" + fileName));
+
 		Sheet sheet = workbook.getSheetAt(0);
-		//System.out.println("Cantidad de hojas: " + sheet);
-		
+		// System.out.println("Cantidad de hojas: " + sheet);
+
 		int filas = sheet.getPhysicalNumberOfRows();
 		System.out.println("Cantidad de filas: " + filas);
 		int columnas = sheet.getRow(0).getPhysicalNumberOfCells();
 		System.out.println("Cantidad de columnas: " + columnas);
 		String matriz[][] = new String[filas][columnas];
-        Cell cell;
-        for (int i = 1; i < filas; i++) {
-            // Archivo original
-            // for (int i = 1; i < rows; i++) {
-            for (int j = 1; j < columnas; j++) {
+		Cell cell;
+		for (int i = 1; i < filas; i++) {
+			// Archivo original
+			// for (int i = 1; i < rows; i++) {
+			for (int j = 1; j < columnas; j++) {
 
-                //cell = sheet.getRow(i).getCell(j);
-                if ((cell = sheet.getRow(i).getCell(j)) != null) {
-                    DataFormatter formatter = new DataFormatter();
-                    String cellContents = formatter.formatCellValue(cell);
-                    matriz[i][j] = cellContents;
-                    System.out.println(matriz[i][j]);
-                    
-                    
-                    //Validacion de datos del prestador:   
-                    
-                    
-                    
-                }
-            }
-        }
-        
+				// cell = sheet.getRow(i).getCell(j);
+				if ((cell = sheet.getRow(i).getCell(j)) != null) {
+					DataFormatter formatter = new DataFormatter();
+					String cellContents = formatter.formatCellValue(cell);
+					matriz[i][j] = cellContents;
+					System.out.println(matriz[i][j]);
+
+					// Validacion de datos del prestador:
+
+				}
+			}
+		}
+
 		DataFormatter dataFormatter = new DataFormatter();
 
 		List<AltaOsde> cellList = new ArrayList<>();
@@ -63,7 +60,7 @@ public class LecturaExcelOsde {
 		int rowNumber = 0;
 
 		while (rowIterator.hasNext()) {
-			
+
 			Row row = rowIterator.next();
 
 			rowNumber++;
@@ -85,10 +82,6 @@ public class LecturaExcelOsde {
 				altaOsde.setLocalidad(dataFormatter.formatCellValue(row.getCell(15)));
 				altaOsde.setProvincia(dataFormatter.formatCellValue(row.getCell(16)));
 				altaOsde.setTelefono(dataFormatter.formatCellValue(row.getCell(28)));
-				
-				
-				
-				
 
 				cellList.add(altaOsde);
 
