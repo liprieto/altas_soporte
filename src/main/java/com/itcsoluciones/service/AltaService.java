@@ -57,7 +57,7 @@ public class AltaService {
 		return b;
 	}
 
-	// Metodo para guardar archivo X en directorio para almacenamiento y lectura
+	// Metodo para guardar archivo (X FINANCIADOR) en directorio para almacenamiento y lectura
 
 	/*
 	 * public boolean guardarDirectorio2(String fileName) {

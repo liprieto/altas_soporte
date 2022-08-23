@@ -85,7 +85,7 @@
 					var form = document.forms[1];
 					var formData = new FormData(form);
 
-					// Ajax call for file uploaling
+					// Mensaje exitoso de archivo subido
 					var ajaxReq = $.ajax({
 						url : '/uploadfile2',
 						type : 'POST',
@@ -96,26 +96,26 @@
 						xhr : function() {
 							//Get XmlHttpRequest object
 							var xhr = $.ajaxSettings.xhr();
-							//Set onprogress event handler 
+							//Set controller events
 							xhr.upload.onprogress = function(event) {
 
 							};
 							return xhr;
 						},
 						beforeSend : function(xhr) {
-							//Reset alert message and progress bar
+							//Mensaje de alerta
 							$('#alertMsg1').text('');
 
 						}
 					});
 
-					// Called on success of file upload
+					// Mensaje exitoso de archivo subido
 					ajaxReq.done(function(msg) {
 						$('#alertMsg1').text(msg);
 
 					});
 
-					// Called on failure of file upload
+					// Mensaje fallido de archivo subido
 					ajaxReq.fail(function(jqXHR) {
 						$('#alertMsg1').text(
 								jqXHR.responseText + '(' + jqXHR.status + ' - '
