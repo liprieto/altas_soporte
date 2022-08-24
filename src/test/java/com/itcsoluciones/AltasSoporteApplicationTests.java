@@ -1,10 +1,10 @@
-package com.demo;
+package com.itcsoluciones;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class PruebaCargaApplicationTests {
+@SpringBootTest(classes = AltasSoporteApplicationTests.class)
+class AltasSoporteApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -153,7 +153,35 @@
 		</form>
 		<br />
 
+		<div>
+			<label>Últimas altas realizadas</label>
+			<table class='table'>
+				<thead>
+					<tr>
+						<th>CodigoPOSDE</th>
+						<th>Nombre</th>
+						<th>Cuit</th>
+						<th>Terminal</th>
+						<th>Filial</th>
+						<th>Accion</th>
 
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- 
 
 		<form action="/uploadfile2" method="post"
 			enctype="multipart/form-data">
@@ -168,14 +196,13 @@
 
 			</div>
 		</form>
+		-->
 
-		<!--  		  
-		<label>Set Order</label>
-		<div>
-			<textarea rows="5" cols="50" id="order"></textarea>
-		</div>
-	-->
-		<br> <br> <br> <a href="javascript:sentData()">Descargar archivo</button>
+
+
+		<br> <br> <br> <a href="javascript:sentData()">Descargar
+			archivo
+			</button>
 	</div>
 </body>
 </html>

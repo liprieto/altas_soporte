@@ -26,7 +26,9 @@ public class LecturaExcelOsde {
 
 		Sheet sheet = workbook.getSheetAt(0);
 		// System.out.println("Cantidad de hojas: " + sheet);
-
+		
+		String base="";
+		
 		int filas = sheet.getPhysicalNumberOfRows();
 		System.out.println("Cantidad de filas: " + filas);
 		int columnas = sheet.getRow(0).getPhysicalNumberOfCells();
@@ -46,11 +48,36 @@ public class LecturaExcelOsde {
 					System.out.println(matriz[i][j]);
 
 					// Validacion de datos del prestador:
-
+					
 				}
+				if(j==2) {
+					String filial = (matriz[i][2]);
+					if(filial != null) {
+						base = "";
+						
+						switch (filial) {
+						case "60":
+							base = "SIFOSOSDEMETRO";
+							break;
+						case "11":
+							base = "SIFOSOSDEMENDOZA";
+							break;
+						case "2":
+							base = "SIFOSOSDECORDOBA";
+							break;
+						default:
+							base = "SIFOSOSDENACIONAL";
+							break;
+						}
+						System.out.println("Corresponde a: " + base);
+					}
+				}
+				
 			}
 		}
-
+		
+		
+		
 		DataFormatter dataFormatter = new DataFormatter();
 
 		List<AltaOsde> cellList = new ArrayList<>();

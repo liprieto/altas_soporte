@@ -18,9 +18,6 @@ import com.itcsoluciones.entity.AltaPrueba;
 
 public class LecturaExcelPrueba {
 
-	// public static final String SAMPLE_XLS_FILE_PATH = "E://Excel/anish.xls";
-	// public static final String SAMPLE_XLSX_FILE_PATH = "E://Excel/anish.xlsx";
-
 	public List<AltaPrueba> getDataFromExcel(String fname)
 			throws IOException, EncryptedDocumentException, InvalidFormatException {
 
@@ -43,11 +40,11 @@ public class LecturaExcelPrueba {
 			if (p > 1) {
 				AltaPrueba f2 = new AltaPrueba();
 
-				f2.setCol5(dataFormatter.formatCellValue(row.getCell(0)));
-				f2.setCol6(dataFormatter.formatCellValue(row.getCell(1)));
-				f2.setCol7(dataFormatter.formatCellValue(row.getCell(2)));
-				f2.setCol8(dataFormatter.formatCellValue(row.getCell(3)));
-				f2.setCol9(dataFormatter.formatCellValue(row.getCell(4)));
+				f2.setNombre(dataFormatter.formatCellValue(row.getCell(0)));
+				f2.setApellido(dataFormatter.formatCellValue(row.getCell(1)));
+				f2.setCuit(dataFormatter.formatCellValue(row.getCell(2)));
+				f2.setTelefono(dataFormatter.formatCellValue(row.getCell(3)));
+				f2.setDireccion(dataFormatter.formatCellValue(row.getCell(4)));
 				listemp.add(f2);
 				// System.out.println(listemp);
 			}

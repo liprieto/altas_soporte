@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -42,6 +41,8 @@ public class AltaController {
 
 	@PostMapping("/uploadfile1")
 	public ResponseEntity<String> singleFileUpload(@RequestParam("file") MultipartFile file) {
+		
+	
 
 		try {
 
@@ -51,10 +52,11 @@ public class AltaController {
 			Files.write(path, bytes);
 			System.out.println(path); 
 			
+			
 			boolean b = altaService.guardarDirectorio1((dtf.format(LocalDateTime.now()) + file.getOriginalFilename()));
-
+			
 			return new ResponseEntity<>("Archivo cargado con éxito", HttpStatus.OK);
-
+			
 		} catch (IOException e) {
 			return new ResponseEntity<>("No se pudo almacenar la fecha", HttpStatus.EXPECTATION_FAILED);
 		}
