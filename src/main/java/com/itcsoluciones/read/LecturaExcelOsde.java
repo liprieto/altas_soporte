@@ -2,6 +2,7 @@ package com.itcsoluciones.read;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,11 +19,9 @@ import com.itcsoluciones.entity.AltaOsde;
 
 public class LecturaExcelOsde {
 
-	public List<AltaOsde> getDataFromExcel(String fileName)
-			throws IOException, EncryptedDocumentException, InvalidFormatException {
+	public List<AltaOsde> getDataFromExcel(String fileName)	throws IOException, EncryptedDocumentException, InvalidFormatException, SQLException {
 
-		Workbook workbook = WorkbookFactory
-				.create(new FileInputStream("/home/luisp/Documentos/prueba-carga/" + fileName));
+		Workbook workbook = WorkbookFactory.create(new FileInputStream("/home/luisp/Documentos/prueba-carga/" + fileName));
 
 		Sheet sheet = workbook.getSheetAt(0);
 		// System.out.println("Cantidad de hojas: " + sheet);
@@ -85,7 +84,11 @@ public class LecturaExcelOsde {
 		Iterator<Row> rowIterator = sheet.iterator();
 
 		int rowNumber = 0;
-
+		
+		
+		
+		
+		
 		while (rowIterator.hasNext()) {
 
 			Row row = rowIterator.next();

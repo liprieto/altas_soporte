@@ -41,8 +41,6 @@ public class AltaController {
 
 	@PostMapping("/uploadfile1")
 	public ResponseEntity<String> singleFileUpload(@RequestParam("file") MultipartFile file) {
-		
-	
 
 		try {
 
@@ -61,8 +59,7 @@ public class AltaController {
 			return new ResponseEntity<>("No se pudo almacenar la fecha", HttpStatus.EXPECTATION_FAILED);
 		}
 
-	}
-	
+	}	
 	//Endpoint para futuro prestador que utilice el microservicio 
 	
 	/*@PostMapping("/uploadfile2")
@@ -86,7 +83,6 @@ public class AltaController {
 	}*/
 
 	@GetMapping("/download")
-
 	public ResponseEntity<InputStreamResource> reporteAltas(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
  
